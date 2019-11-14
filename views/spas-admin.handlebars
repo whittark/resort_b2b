@@ -1,0 +1,83 @@
+<!-- ++++++++ SPA BOOKINGS FOR ADMINS  ++++++++++++++++
+  Displays when an admin/resort manager selects View Spa 
+  from the Management Menu (localhost:8080/admin > Select View Spa) 
+
+  
+  Displays guest name, contact information, service, and service time.
+  
+  Includes button to return users to spa booking page for additional
+  services.
+-->
+<div class="row">
+  <div class="col-md-12">
+    <form id="search-form">
+      <!-- Search for spa booking by guest name -->
+      <label for="name">Search For Spa Reservation:</label>
+      <div class="input-group">
+        <input class="form-control" type="text" id="name" name="name"><button class="btn btn-default" id="search-btn" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div id="search-spas"></div>
+  </div>
+</div>
+<!-- View spa rooms -->
+<h3>All Spa Rooms</h3>
+
+<div class="row">
+  <div class="col-md-12">
+  <!-- Displays spa reservations -->
+  {{#each spas}}
+    <a href="/admin/spas/id/{{this.id}}">
+      {{#if this.available}}
+          <div class="room-reserved">{{this.id}}</div>
+        {{/if}}
+    </a>
+  {{/each}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="sm-room-reserved"></div>
+    <p>Reserved</p>
+  </div>
+</div>
+<!-- Button to return admin to Management Menu -->
+<a href="/admin/menu"><button type="back" class="btn btn-default">Manager Menu</button></a>
+<div class="row" style="padding-bottom:20px;"></div>
+
+<!-- JQuery to post spa reservations in wells by guest name -->
+<script>
+  $("#search-btn").on("click", function() {
+    event.preventDefault();
+    $.post("/admin/spas-admin", $("#search-form").serialize(), function(result) {
+      result.forEach(function(val) {
+        var newDiv = $("<div/>");
+        //Inserts well
+        newDiv.addClass("well");
+        //Inserts paragraphs for guest name, phone, email, res time, and service
+        var name = $("<p/>");
+        name.html("<strong>Name:</strong> " + val.name);
+        var phone = $("<p/>");
+        phone.html("<strong>Phone:</strong> " + val.phone);
+        var email = $("<p/>");
+        email.html("<strong>Email:</strong> " + val.email);
+        var res_time = $("<p/>");
+        res_time.html("<strong>Reservation Time:</strong> " + val.res_time);
+        var service = $("<p/>");
+        service.html("<strong>Service:</strong> " + val.service);
+        //Appends divs with <p> inserted
+        newDiv.append(name);
+        newDiv.append(phone);
+        newDiv.append(email);
+        newDiv.append(res_time);
+        newDiv.append(service);
+        $("#search-spas").append(newDiv);
+      });
+    });
+  });
+</script>

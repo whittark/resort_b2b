@@ -1,0 +1,357 @@
+/*+++++++++++++ CSS Groupings ++++++++++++++++++++++
+
+App Structure
+Text Selectors
+Button Styles
+Reservation Elements
+Media Queries
+
+*/
+
+
+/*+++++++++++++ App Structure +++++++++++++++++++++*/
+
+body { 
+  background: url(https://r-cf.bstatic.com/images/hotel/max1024x768/144/14444240.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#resform {
+	margin-right: 25px; 
+	margin-top: 25px;
+}
+#search-form {
+	margin-top: 20px;
+}
+.main {
+	background-color: rgba(5, 1, 19, 0.8);
+	margin-bottom: 15px;
+	border-radius: 15px;
+}
+.example-8 {
+	background-color: #03122B;
+	opacity: 0.92;
+	margin-bottom: 10em;
+}
+.example-8 .navbar-brand {
+  background: url(/assets/img/LOGOfinal.png) center / contain no-repeat;
+  width: 200px;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+	color: rgb(228, 226, 226);
+}
+div{
+	opacity: 0.98;
+}
+
+
+/*+++++++++++++ Text Selectors +++++++++++++++++++++*/
+
+p {
+	font-family: 'Didact Gothic', sans-serif;
+	color: rgb(249, 250, 252);
+}
+h1 {
+	font-family:'Pinyon Script', cursive;
+	/*color: rgb(10, 17, 51);*/
+	color: rgb(249, 250, 252);
+	font-size: 50px;
+}
+h2 {
+	font-family:'Didact Gothic', sans-serif;
+	color: rgb(249, 250, 252);
+}
+h3 {
+	font-family: 'Didact Gothic', sans-serif;
+	color: rgb(249, 250, 252);
+	font-size: 27px;
+}
+h4 {
+	font-family: 'Didact Gothic', sans-serif;
+	color: rgb(249, 250, 252);
+	font-size: 19px;
+}
+a {
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 15px;
+}
+label {
+	font-family: 'Didact Gothic', sans-serif;
+	color: rgb(249, 250, 252);
+}
+.lead {
+	font-family: 'Didact Gothic', sans-serif;
+	color: #03122B;
+	font-size: 16px;
+}
+
+
+/*+++++++++++++ Button Styles +++++++++++++++++++++*/
+
+.btn-big {
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  color: #045675;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #E5E0CC;
+  margin: 10px;
+}
+.btn-med {
+  padding: 10px 20px;
+  border: 0 none;
+  font-weight: 680;
+  font-family: 'Didact Gothic', sans-serif;
+  color: #D4E7E8;
+  letter-spacing: 1px;
+  /*text-transform: uppercase;*/
+  background-color: #03122B;
+  margin: 10px;
+}
+.btn-med:hover {
+	color: #E5E0CC;
+} 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+.btn-lg.round {
+	margin: 15px;
+}
+.btn-default {
+	color: #E5E0CC;
+	background-color: #092a5f;
+    /*background-color: #03122B;*/
+	border-color: rgb(6, 29, 68);
+	margin-bottom: 5px;
+	margin-right: 10px;
+	margin-top: 7px;
+}
+.btn-default2 {
+	color: #E5E0CC;
+	background-color: #092a5f;
+    /*background-color: #03122B;*/
+	border-color: rgb(6, 29, 68);
+	margin-bottom: 5px;
+	margin-right: 10px;
+	margin-top: 7px;
+	margin-left: 50px;
+}
+
+/*+++++++++++++ Reservation Elements +++++++++++++++++++++*/
+
+#header-row {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 15px;
+	background-color: white;
+}
+#body-cont {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 300px;
+	padding: 15px;
+}
+.well {
+	background-color: rgba(5, 1, 19, 0.8);
+}
+#search-rooms {
+	margin-top: 20px;
+}
+.room-available,
+.room-occupied,
+.room-reserved {
+	text-align: center;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+}
+.room-available {
+	background-color: rgb(82, 185, 159);
+}
+.room-occupied {
+	background-color: rgb(255, 115, 0);
+}
+.room-reserved {
+	background-color: rgb(144, 144, 148);
+}
+.sm-room-available,
+.sm-room-occupied,
+.sm-room-reserved {
+	width: 20px;
+	height: 20px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	float: left;
+}
+.sm-room-available {
+	background-color:rgb(82, 185, 159);
+}
+.sm-room-occupied {
+	background-color: rgb(255, 115, 0);
+}
+.sm-room-reserved {
+	background-color: rgb(144, 144, 148);
+}
+.available {
+	color: rgb(82, 185, 159);
+}
+.reserved {
+	color: rgb(144, 144, 148);
+}
+.occupied {
+	color: rgb(255, 115, 0);
+}
+.div-legend {
+	color: white;
+}
+div.col-lg-8{
+	background-color: white;
+	padding: 20px;
+}
+.legend {
+	line-height: 20px;
+}
+.validate {
+  color: rgb(252, 34, 6);
+}
+
+/*+++++++++++++ Media Queries +++++++++++++++++++++*/
+
+/*Media query for small screens and phones */
+@media (min-width: 576px) and (max-width: 767px) { 
+	.main {
+		margin-left: 10px;
+		margin-right: 10px;
+		padding-top: 10px;
+	}
+
+	.navbar-inverse .navbar-nav>li{
+		color: #03122B;
+	}
+}
+
+/*Media query for midsized devices */
+@media (min-width: 992px) and (max-width: 1199px) { 
+	.main{
+		padding-top: 10px;
+		width: 60em;
+	}
+
+	.navbar-inverse .navbar-nav>li{
+		color: #03122B;
+	}
+
+	#resform {
+		margin-right: 175px; 
+		margin-top: 25px;
+	}
+	.list-group-item {
+		margin-left: -55px;
+		margin-right: 300px; 
+		margin-top: 25px;
+	}
+	.form-control {
+		width: 150px;
+		margin-right: 5px;
+	}
+	#firstname{
+		margin-top: 5px;
+		width: 300px;
+	}
+	#lastname{
+		margin-top: 5px;
+		width: 300px;
+	}
+	#phone{
+		margin-top: 5px;
+		width: 300px;
+	}
+	#email{
+		margin-top: 5px;
+		width: 300px;
+	}
+	#checkin{
+		margin-top: 5px;
+		width: 300px;
+	}
+	#checkout{
+		margin-top: 5px;
+		width: 300px;
+	}
+
+}
+
+/*Media query for midsized devices*/
+@media (min-width: 1200px) { 
+	.main{
+		padding-top: 10px;
+		width: 60em;
+	}
+
+	.navbar-inverse .navbar-nav>li{
+		color: #03122B;
+	}
+	#resform {
+		margin-right: 375px; 
+		margin-top: 25px;
+	}
+	.list-group-item {
+		margin-left: -55px;
+		margin-right: 300px; 
+		margin-top: 25px;
+	}
+	.form-control {
+		width: 150px;
+		margin-right: 5px;
+	}
+	#room{
+		width: 300px;
+		margin-right: 5px;
+	}
+	#lastname{
+		width: 300px;
+		margin-right: 5px;
+	}
+	#firstname{
+		width: 300px;
+		margin-right: 5px;
+	}
+	#phone{
+		width: 300px;
+		margin-right: 5px;
+	}
+	#email{
+		width: 300px;
+		margin-right: 5px;
+	}
+	#checkin{
+		width: 300px;
+		margin-right: 5px;
+	}
+	#checkout{
+		width: 300px;
+		margin-right: 5px;
+	}
+	#name{
+		margin-top: 5px;
+		width: 600px;
+		margin-right: 5px;
+	}
+	#firstname{
+		margin-top: 5px;
+		width: 300px;
+	}
+	#lastname{
+		margin-top: 5px;
+		width: 300px;
+	}
+}

@@ -1,0 +1,56 @@
+<!-- ++++++++ ROOM BOOKING ++++++++++++++++
+  Displays room reservation information whether reserved, occupied,
+  or available.
+  
+  Includes menu buttons to check a guest in or out depending 
+  on the checkin status or book the room if available.
+  
+  Also includes button to return rooms diagram to view other rooms.
+
+-->
+
+<!-- Requests data for each room object -->
+
+{{#each rooms}}
+  <h3>Current Room Information:</h3>
+  <!-- Requests data for the selected room object -->
+  <h4><strong>Room #{{this.id}}</strong></h4>
+  {{#unless this.available}}
+  <!-- If guest is checked in, displays Occupied -->
+    {{#if this.checkin}}
+      <h4><strong>Status:</strong> <span class="occupied">Occupied</span></h4>
+    {{/if}}
+    <!-- If guest has reserved room but is not checked in -->
+    {{#unless this.checkin}}
+      <h4><strong>Status:</strong> <span class="reserved">Reserved</span></h4>
+    {{/unless}}
+    <!-- Requests this guest's data -->
+    <p><strong>First Name:</strong> {{this.Guest.first_name}}</p>
+    <p><strong>Last Name:</strong> {{this.Guest.last_name}}</p>
+    <p><strong>Phone:</strong> {{this.Guest.phone}}</p>
+    <p><strong>Email:</strong> {{this.Guest.email}}</p>
+    <p><strong>Check-in:</strong> {{this.Guest.checkin}}</p>
+    <p><strong>Check-out:</strong> {{this.Guest.checkout}}</p>
+    <!-- If guest is already checked in, displays Check Out button -->
+    {{#if this.checkin}}
+      <form action="/admin/checkout/id/{{this.id}}/?_method=PUT" method="POST">
+        <button class="btn btn-default" type="submit">Check Out</button>
+      </form>
+    {{/if}}
+    <!-- If guest has not been checked in, displays, Check In button -->
+    {{#unless this.checkin}}
+      <form action="/admin/checkin/id/{{this.id}}/?_method=PUT" method="POST">
+        <button class="btn btn-default" type="submit">Check In</button>
+      </form>
+    {{/unless}}
+  {{/unless}}
+  <!-- If room is available, display Available -->
+  {{#if this.available}}
+    <h4><strong>Status:</strong> <span class="available">Available</span></h4>
+    <form action="/admin/book/id/{{this.id}}" method="GET"><button class="btn btn-default">Book This Room</button></form>
+  {{/if}}
+{{/each}}
+<br>
+<!-- Button that returns the admin/manager to the rooms diagram -->
+<a href="/admin/rooms"><button class="btn btn-default">Go Back</button></a>
+<div class="row" style="padding-bottom:20px;"></div>

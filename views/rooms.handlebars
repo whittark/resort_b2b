@@ -1,0 +1,119 @@
+<!-- ++++++++ ROOM LOOKUP AND DIAGRAM ++++++++++++++++
+  Admin can look up an existing reservation by guest last name or 
+  view room availabilities / book a room.
+
+  Displays a diagram of all rooms; admin can select a room to view
+  room data; from room detail (room.handlebars), admin can check a
+  guest in/out or create a booking.
+  
+  Also includes button to return rooms diagram to view other rooms.
+
+-->
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- Search for room reservation by guest last name-->
+    <form id="search-form">
+      <label for="name">Search For Guest:</label>
+      <div class="input-group">
+        <input class="form-control" type="text" id="name" name="name"><button class="btn btn-default" id="search-btn" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div id="search-rooms"></div>
+  </div>
+</div>
+<!-- Selectable room diagrm; color codes room objects by availability-->
+<h3>All Rooms</h3>
+
+<div class="row">
+	<div class="col-md-12" id="rooms-div">
+  <!-- For each room object-->
+	{{#each rooms}}
+		<a href="/admin/rooms/id/{{this.id}}">
+    <!-- If available, uses light green class and displays room # from DB -->
+			{{#if this.available}}
+			  <div class="room-available">{{this.id}}</div>
+			{{/if}}
+      <!-- If reserved, uses light gray class and displays room # from DB -->
+			{{#unless this.available}}
+        {{#unless this.checkin}}
+          <div class="room-reserved">{{this.id}}</div>
+        {{/unless}}
+        <!-- If occupied, uses orange class and displays room # from DB -->
+        {{#if this.checkin}}
+          <div class="room-occupied">{{this.id}}</div>
+        {{/if}}
+			{{/unless}}
+		</a>
+	{{/each}}
+	</div>
+</div>
+<!-- Displays room availability key; green = available, grey = reserved, orange = occupied -->
+<div class="row">
+	<div class="col-md-12">
+		<div class="sm-room-available"></div>
+		<p>Available</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="sm-room-occupied"></div>
+		<p>Occupied</p>
+	</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="sm-room-reserved"></div>
+    <p>Reserved</p>
+  </div>
+</div>
+<!-- Button to return the admin/manager to the Management menu -->
+<a href="/admin/menu"><button type="back" class="btn btn-default">Manager Menu</button></a></p>
+<div class="row" style="padding-bottom:20px;"></div>
+
+<script>
+  // JQuery to support guest lookup by guest name
+  $("#search-btn").on("click", function() {
+    event.preventDefault();
+    // Displays a well object with guest reservation by room
+    $.post("/admin/rooms", $("#search-form").serialize(), function(result) {
+      result.forEach(function(val) {
+        var newDiv = $("<div/>");
+        // If reservation exists for lastname, displays well (res obj) div
+        newDiv.addClass("well");
+        // Inserts room # <p>
+        var roomNumber = $("<p/>");
+        roomNumber.html("<strong>Room #" + val.room_number + "</strong>");
+        // Inserts guest name <p>
+        var firstName = $("<p/>");
+        firstName.html("<strong>First Name:</strong> " + val.first_name);
+        var lastName = $("<p/>");
+        lastName.html("<strong>Last Name:</strong> " + val.last_name);
+        // Inserts guest phone <p>
+        var phone = $("<p/>");
+        phone.html("<strong>Phone:</strong> " + val.phone);
+        var email = $("<p/>");
+        // Inserts guest email <p>
+        email.html("<strong>Email:</strong> " + val.email);
+        // Inserts guest checkin/checkout dates <p>
+        var checkin = $("<p/>");
+        checkin.html("<strong>Check-in:</strong> " + val.checkin);
+        var checkout = $("<p/>");
+        checkout.html("<strong>Check-out:</strong> " + val.checkout);
+        // Appends div with <p> values
+        newDiv.append(roomNumber);
+        newDiv.append(firstName);
+        newDiv.append(lastName);
+        newDiv.append(phone);
+        newDiv.append(email);
+        newDiv.append(checkin);
+        newDiv.append(checkout);
+        $("#search-rooms").append(newDiv);
+      });
+    });
+  });
+</script>

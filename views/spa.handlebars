@@ -1,0 +1,29 @@
+<!-- ++++++++ SPA BOOKING ++++++++++++++++
+  Spa booking detail. Displays for users or admins after they create booking
+  from spas.handlebars (user selects Spa from topnav, creates reservation).
+  
+  Displays guest name, contact information, service, and service time.
+  
+  Includes button to return users to spa booking page for additional
+  services.
+-->
+<div class="container" style="padding:15px;">
+<!-- Requests spa room availability -->
+{{#each spas}}
+  <h2><strong>Spa #{{this.id}}</strong></h2>
+  <!-- If available, displays confirmation -->
+  {{#if this.available}}
+   <!-- Spa confirmation with guest name, contact info,
+    service requested, and service time -->
+    <h3>Spa Service Reservation</h3>
+    <p><strong>Name:</strong> {{this.name}}</p>
+    <p><strong>Phone:</strong> {{this.phone}}</p>
+    <p><strong>Email:</strong> {{this.email}}</p>
+    <p><strong>Services:</strong> {{this.service}}</p>
+    <p><strong>Reservation Time:</strong> {{this.res_time}}</p>
+  {{/if}}
+{{/each}}
+<br>
+<!-- Button returns user to spa booking view -->
+<a href="/admin/spas"><button class="btn btn-default" style="margin-bottom:10px;">Go Back</button></a>
+</div>
